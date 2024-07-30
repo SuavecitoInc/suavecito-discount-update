@@ -1,0 +1,49 @@
+useDotenv: true
+org: suavecitoinc
+service: suavecito-discount-update
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: us-west-1
+  httpApi:
+    cors:
+      allowedOrigins:
+        - '*'
+      allowedHeaders:
+        - Content-Type
+        - Authorization
+        - X-Suave-Signature
+        - X-Amz-Date
+        - X-Api-Key
+        - X-Amz-Security-Token
+        - X-Amz-User-Agent
+        - X-Amzn-Trace-Id
+        - X-Shopify-Hmac-Sha256
+      allowedMethods:
+        - OPTIONS
+        - GET
+        - POST
+  environment:
+    WEBHOOK_SECRET: ${env:WEBHOOK_SECRET}
+    SHOPIFY_ADMIN_API_VERSION: ${env:SHOPIFY_ADMIN_API_VERSION}
+    SHOPIFY_STORE: ${env:SHOPIFY_STORE}
+    SHOPIFY_ACCESS_TOKEN: ${env:SHOPIFY_ACCESS_TOKEN}
+
+functions:
+  updateDiscount:
+    handler: src/functions/updateDiscount.handler
+    events:
+      - httpApi:
+          path: /suavecito-discounts-update/update-discount
+          method: post
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-typescript
+
+build:
+  esbuild: false
+
+package:
+  individually: true
