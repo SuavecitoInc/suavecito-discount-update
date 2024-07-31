@@ -16,3 +16,14 @@ Create a Shopify `Discount Creation` Webhook
 <p align="center">
   <img src="./screenshots/shopify-discount-creation-webhook.jpg" alt="Shopify Discount Creation Webhook" width="1000">
 </p>
+
+### Environmental Variables
+
+You find the Webhook Secret in /settings/notifications/webhooks
+
+```bash
+WEBHOOK_SECRET=
+SHOPIFY_ADMIN_API_VERSION=2024-07
+SHOPIFY_STORE=suavecito
+SHOPIFY_ACCESS_TOKEN=
+```
