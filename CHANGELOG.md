@@ -1,70 +1,40 @@
 # CHANGELOG
 
-## v.1.2 - 2024-06-14
-
-**Features**
-
-- Added `/getDiscountedCollectionPricing` endpoint
-  - This endpoint fetches discounted pricing for products within a specific collection.
-  - **Request Body**:
-    ```json
-    {
-      "offer": "string",
-      "handle": "string",
-      "collectionId": "number"
-    }
-    ```
-  - **Response Body**:
-    ```json
-    {
-      "prices": [
-        {
-          "id": "string",
-          "discountedPrice": "number"
-        }
-      ],
-      "type": "string",
-      "appliedDiscount": {
-        // Details of the applied discount
-      }
-    }
-    ```
-  - **Limitation**: Discounts only apply if the collection is explicitly listed in the discount's rules. If the collection is not listed, the discount will not be applied.
-
-## v.1.1 - 2024-06-13
-
-**Features**
-
-- Added `/getDiscountProductPricing` endpoint
-  - This endpoint fetches discounted pricing for a specific product based on an offer from the request.
-  - **Request Body**:
-    ```json
-    {
-      "offer": "string",
-      "handle": "string",
-      "productId": "number",
-      "prices": [
-        {
-          "id": "string",
-          "price": "number"
-        }
-      ]
-    }
-    ```
-  - **Response Body**:
-    ```json
-    {
-      "prices": [
-        {
-          "id": "string",
-          "discountedPrice": "number"
-        }
-      ],
-      "type": "string"
-    }
-    ```
-  - **Limitation**: Discounts only apply to products explicitly listed in the discount's rules. If the product is not listed, the discount will not be applied.
-
-## v.1.0 - Initial Commit
+## v.0.0.1 - Initial Commit - 2024-07-30
 
 - Initial setup and commit of the lambda project.
+
+**Features**
+
+- Added `/update-discount` endpoint
+
+  - This endpoint updates a Shopify discount, it makes it combineable with shipping discounts.
+  - This endpoint receives a discount payload from a Shopify Webhook
+  - The discount is fetched by its ID. We need to know it's type.
+  - The discount is then updated as combinable with shipping discounts.
+  - **Request Body**:
+
+    ```json
+    {
+      "admin_graphql_api_id": string,
+      "title": string,
+      "status": string,
+      "created_at": string,
+      "updated_at": string
+    }
+
+    ```
+
+    - **Example Request Body**:
+
+    ```json
+    {
+      "admin_graphql_api_id": "gid://shopify/DiscountCodeNode/1166641397843",
+      "title": "DISCOUNT_TEST",
+      "status": "ACTIVE",
+      "created_at": "2024-07-30T12:34:37-07:00",
+      "updated_at": "2024-07-30T12:34:37-07:00"
+    }
+    ```
+
+  - **Limitation**: This endpoint is used to update the given discount and make it combineable with all shipping discounts.

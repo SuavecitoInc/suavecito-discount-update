@@ -1,6 +1,6 @@
 {
   "name": "suavecito-discount-update",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A lambda endpoint to update a Shopify Discount",
   "main": "index.js",
   "scripts": {
@@ -12,12 +12,14 @@
   "license": "MIT",
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.2",
+    "@serverless/eslint-config": "^5.1.0",
     "@serverless/typescript": "^3.38.0",
     "@shopify/api-codegen-preset": "^1.0.1",
     "@shopify/graphql-codegen": "^0.1.0",
     "@types/aws-lambda": "^8.10.138",
     "@types/isomorphic-fetch": "^0.0.39",
     "@types/node": "^20.14.2",
+    "git-list-updated": "^1.2.1",
     "prettier": "^3.3.3",
     "serverless": "^4.1.0",
     "serverless-offline": "^13.6.0",
