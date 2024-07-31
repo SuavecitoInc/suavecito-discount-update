@@ -14,7 +14,7 @@ Create a Shopify `Discount Creation` Webhook
 - Set API Version to latest
 
 <p align="center">
-  <img src="./screenshots/shopify-discount-creation-webhook.jpg" alt="Shopify Discount Creation Webhook" width="1000">
+  <img src="./screenshots/shopify-discount-creation-webhook.jpg" alt="Shopify Discount Creation Webhook" width="600">
 </p>
 
 ### Environmental Variables
